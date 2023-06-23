@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f495b82560bbea953af44ecabbfa1635
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - prefabSunFlower: {fileID: 2920336134444710730, guid: d5d5fa520b8a84438bc813bdd4c07c93, type: 3}
+  - prefabWallNut: {instanceID: 0}
+  - prefabPeashooter: {fileID: 9100102472566956931, guid: dda4d5c778ddc1b24ab24b5dc0bbad2b, type: 3}
+  - parent: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
