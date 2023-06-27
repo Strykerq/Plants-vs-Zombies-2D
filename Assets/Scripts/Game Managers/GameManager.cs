@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
   public static GameObject selectedPrefab;
   public static int indexPrefab;
   public GameObject gameWinPanel;
-  [SerializeField] public GameObject[] zombies;
   public static int countZombies;
 
 
@@ -58,27 +57,17 @@ public class GameManager : MonoBehaviour
               WinGame();
           }
       }
-      
-     
       sunPointsText.text = sunPoints.ToString();
       
       if (Input.GetKeyDown(KeyCode.Escape))
       {
           selectedPrefab = null;
       }
-
-      zombies = GameObject.FindGameObjectsWithTag("Zombie");
-      zombies = GameObject.FindGameObjectsWithTag("ArmouredZomibe");
-      zombies = GameObject.FindGameObjectsWithTag("ZombieWithRedCone");
   }
-  
-
   private void WinGame()
   {
-      if (zombies.Length == 0)
-      {
-          Time.timeScale = 0f; 
-          gameWinPanel.SetActive(true);
-      }
+      Time.timeScale = 0f; 
+      gameWinPanel.SetActive(true);
+      
   }
 }

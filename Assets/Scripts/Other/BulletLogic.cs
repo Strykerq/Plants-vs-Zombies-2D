@@ -13,22 +13,22 @@ public class BulletLogic : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Zombie"))
         {
-            ZombieHealthBar zombieHealthBar = col.gameObject.GetComponent<ZombieHealthBar>();
-            zombieHealthBar.TakeDamageByDefaultZombies(1);
+            DefaultZombiesAI defaultZombiesAI = col.gameObject.GetComponent<DefaultZombiesAI>();
+            defaultZombiesAI.TakeDamageByDefaultZombies(1);
             Destroy(gameObject);
         }
 
         if (col.gameObject.CompareTag("ZombieWithRedCone"))
         {
-            ZombieWithDerConeHealthBar zombieWithDerConeHealthBar = col.gameObject.GetComponent<ZombieWithDerConeHealthBar>();
-            zombieWithDerConeHealthBar.TakeDamageByZombiesWithRedCone(1);
+            ZombieWithRedCone zombieWithRedCone = col.gameObject.GetComponent<ZombieWithRedCone>();
+            zombieWithRedCone.TakeDamageByZombiesWithRedCone(1);
             Destroy(gameObject);
         }
 
         if (col.gameObject.CompareTag("ArmouredZomibe"))
         {
-            ArmouredZombieHealthBar armouredZombieHealthBar = col.gameObject.GetComponent<ArmouredZombieHealthBar>();
-            armouredZombieHealthBar.TakeDamageByArmouredZombie(1);
+            ArmouredZombie armouredZombie = col.gameObject.GetComponent<ArmouredZombie>();
+            armouredZombie.TakeDamageByArmouredZombie(1);
             Destroy(gameObject);
         }
     }

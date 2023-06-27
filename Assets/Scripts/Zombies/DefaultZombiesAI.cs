@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class DefaultZombiesAI : MonoBehaviour
 {
@@ -7,7 +9,32 @@ public class DefaultZombiesAI : MonoBehaviour
     private float speed;
     private Vector2 movement;
     private bool eating;
-    public GameObject sun;
+    public Image bar;
+    public Image fullBar;
+    private float fill = 1f;
+    private int defaultZombieHealth = 5;
+    private int defaultZombieMaxHealth = 5;
+    
+    public void TakeDamageByDefaultZombies(int damage)
+    {
+        defaultZombieHealth -= damage;
+        fill -= 0.2f;
+        if (defaultZombieHealth <= 0)
+        {
+            Die();
+        }
+    }
+    
+    private void Die()
+    {
+        int randomIndex = Random.Range(0, 5);
+        if (randomIndex == 1)
+        {
+            GameManager.sunPoints += 25;
+        }
+        Destroy(gameObject);
+        GameManager.countZombies++;
+    }
     
     private void Start()
     { 
@@ -20,6 +47,19 @@ public class DefaultZombiesAI : MonoBehaviour
         if (eating == false)
         {
             transform.Translate(movement * speed * Time.deltaTime);
+        }
+        
+        bar.fillAmount = fill;
+
+        if (defaultZombieHealth == defaultZombieMaxHealth)
+        {
+            fullBar.enabled = false;
+            bar.enabled = false;
+        }
+        else
+        {
+            fullBar.enabled = true;
+            bar.enabled = true;
         }
     }
 

@@ -8,7 +8,7 @@ public class SpawnZombies : MonoBehaviour
     public GameObject armouredZombie;
     public GameObject HealthBar;
     public Transform[] spawnPoints;
-    public static ZombieHealthBar zombieHealth;
+    //public static DefaultZombiesAI zombieHealth;
     private Transform spawnPosition;
     public static GameObject instance;
     private int random;

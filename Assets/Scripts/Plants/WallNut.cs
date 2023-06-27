@@ -39,7 +39,7 @@ public class WallNut : MonoBehaviour
             Die();
         }
     }
-    private void Die()
+    public void Die()
     {
         Destroy(gameObject);
     }

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -4976912616711167429}
   - component: {fileID: 2692734935868738365}
   - component: {fileID: 6475205778430434996}
-  - component: {fileID: 1636770361}
   m_Layer: 3
   m_Name: Zombie
   m_TagString: Zombie
@@ -95,6 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombieSettings: {fileID: 11400000, guid: c4d0d7d5fdade06d98e5ba804f0907ee, type: 2}
   sun: {fileID: 7502362805347669647, guid: 21bf6393c0b5398f08130f43ac8e62b7, type: 3}
+  bar: {fileID: 876235658538181013}
+  fullBar: {fileID: 2845223330985827162}
 --- !u!61 &2692734935868738365
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,20 +143,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &1636770361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6699835301359625379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e1c0cc85756efbd8882da16358fa14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: {fileID: 876235658538181013}
-  fullBar: {fileID: 2845223330985827162}
 --- !u!1001 &688396001
 PrefabInstance:
   m_ObjectHideFlags: 0
