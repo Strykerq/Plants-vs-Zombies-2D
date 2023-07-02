@@ -3,13 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject nextMenu;
+    [SerializeField] private GameObject _mainMenu;
+    [SerializeField] private GameObject _nextMenu;
     
     public void StartButton()
     {
-        mainMenu.SetActive(false);
-        nextMenu.SetActive(true);
+        _mainMenu.SetActive(false);
+        _nextMenu.SetActive(true);
     }
 
     public void ExitGame()

@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b49a10601d1f0019af7a5aa0d8f935a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieSettings: {fileID: 11400000, guid: c4d0d7d5fdade06d98e5ba804f0907ee, type: 2}
-  bar: {fileID: 4731122977703884587}
-  fullBar: {fileID: 8533559492547907842}
+  _zombieSettings: {fileID: 11400000, guid: c4d0d7d5fdade06d98e5ba804f0907ee, type: 2}
+  _bar: {fileID: 4731122977703884587}
+  _fullBar: {fileID: 8533559492547907842}
 --- !u!1 &4542590226832295290
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8138237473111551665}
   - component: {fileID: 6057534952505764148}
   - component: {fileID: 583054242688265743}
-  - component: {fileID: 8344516390113847178}
   m_Layer: 2
   m_Name: SunFlower
   m_TagString: SunFlower
@@ -39,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -636, y: -352}
-  m_SizeDelta: {x: 110, y: 139}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 120, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3755522502068661299
 CanvasRenderer:
@@ -72,7 +71,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 2ed715220c0acc39cb0ebea92e72159f, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -92,7 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2ded7855a6aa9af8d76d0b3fe076b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7502362805347669647, guid: 21bf6393c0b5398f08130f43ac8e62b7, type: 3}
+  CurrentHealth: 0
+  _prefab: {fileID: 7502362805347669647, guid: 21bf6393c0b5398f08130f43ac8e62b7, type: 3}
+  _bar: {fileID: 876235658057339062}
+  _fullBar: {fileID: 2845223330526227065}
 --- !u!61 &583054242688265743
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,22 +119,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 30}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8344516390113847178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2920336134444710730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cc2c427879a1a4d9afbc81d72beef16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: {fileID: 876235658057339062}
-  fullBar: {fileID: 2845223330526227065}
 --- !u!1001 &900933570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 838550830785470020, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 838550830785470020, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,11 +194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 838550830785470020, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.8
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 838550830785470020, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 76.5
+      value: 55.5
       objectReference: {fileID: 0}
     - target: {fileID: 838550830785470020, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -235,6 +223,18 @@ PrefabInstance:
     - target: {fileID: 876235658958141300, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_FillMethod
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301736362326496961, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301736362326496961, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301736362326496961, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.59
       objectReference: {fileID: 0}
     - target: {fileID: 7135739071667013714, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_Name
@@ -263,6 +263,14 @@ PrefabInstance:
     - target: {fileID: 8190182895802486156, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
       propertyPath: m_TagString
       value: SunFlower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782584759168728412, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782584759168728412, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5433145d80c4a81c3ba5154a91d63cd2, type: 3}

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-
 public class SunPoints : MonoBehaviour,IPointerDownHandler
 {
   private void Start()
@@ -9,14 +8,13 @@ public class SunPoints : MonoBehaviour,IPointerDownHandler
   }
   public void OnPointerDown(PointerEventData eventData)
   {
-      GameManager.sunPoints += 25;
+      GameManager.SunPoints += 25;
       Destroy(gameObject);
   }
 
   private void Die()
   {
-      GameManager.sunPoints += 25;
+      GameManager.SunPoints += 25;
       Destroy(gameObject);
   }
-  
 }

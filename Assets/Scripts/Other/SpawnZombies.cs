@@ -2,66 +2,56 @@ using System.Collections;
 using UnityEngine;
 
 public class SpawnZombies : MonoBehaviour
-{
-    public GameObject defaultZombie;
-    public GameObject zombieWithRedCone;
-    public GameObject armouredZombie;
-    public GameObject HealthBar;
-    public Transform[] spawnPoints;
-    //public static DefaultZombiesAI zombieHealth;
-    private Transform spawnPosition;
-    public static GameObject instance;
-    private int random;
-    public static bool low;
-    public static bool hard;
-    public static bool norm;
-    private int zombie;
-    private int Arzombie;
-    private int Conzombie;
+{ 
+    [SerializeField] private GameObject _defaultZombie;
+    [SerializeField] private GameObject _zombieWithRedCone;
+    [SerializeField] private GameObject _armouredZombie;
+    [SerializeField] private GameObject _healthBar;
+    [SerializeField] private Transform[] _spawnPoints;
+    private Transform _spawnPosition;
+    public static GameObject Instance;
+    private int _random;
+    public static bool Low;
+    public static bool Hard;
+    public static bool Norm;
 
     private void Start()
     {
         StartCoroutine(Wave1());
-        if (SliderController.selectedLevel == SliderController.low)
+        if (SliderController.SelectedLevel == SliderController.Low)
         {
-            low = true;
+            Low = true;
         }
-        else if (SliderController.selectedLevel == SliderController.normal)
+        else if (SliderController.SelectedLevel == SliderController.Normal)
         {
-            norm = true;
+            Norm = true;
         }
         else
         {
-            hard = true;
+            Hard = true;
         }
 
     }
 
     private void RandomSpawnPoint()
     {
-        random = Random.Range(0, spawnPoints.Length);
-        spawnPosition = spawnPoints[random];
+        _random = Random.Range(0, _spawnPoints.Length);
+        _spawnPosition = _spawnPoints[_random];
     }
 
     private void SpawnDefaultZombie()
     {
-        instance = Instantiate(defaultZombie, spawnPosition.position, Quaternion.identity);
-        zombie++;
-
-
-
+        Instance = Instantiate(_defaultZombie, _spawnPosition.position, Quaternion.identity);
     }
 
     private void SpawnZombieWithRedCone()
     {
-        instance = Instantiate(zombieWithRedCone, spawnPosition.position, Quaternion.identity);
-        Conzombie++;
+        Instance = Instantiate(_zombieWithRedCone, _spawnPosition.position, Quaternion.identity);
     }
 
     private void SpawnArmouredZombie()
     {
-        instance = Instantiate(armouredZombie, spawnPosition.position, Quaternion.identity);
-        Arzombie++;
+        Instance = Instantiate(_armouredZombie, _spawnPosition.position, Quaternion.identity);
     }
 
     IEnumerator Wave1()
@@ -85,9 +75,6 @@ public class SpawnZombies : MonoBehaviour
         StopCoroutine(Wave1());
 
     }
-
-
-
     IEnumerator Wave2()
     {
         Debug.Log("WAVE2");
@@ -116,15 +103,12 @@ public class SpawnZombies : MonoBehaviour
         SpawnArmouredZombie();
         RandomSpawnPoint();
         SpawnZombieWithRedCone();
-        if (!low)
+        if (!Low)
         {
             yield return StartCoroutine(Wave3());
         }
-        
         StopCoroutine(Wave2());
-        
     }
-
     IEnumerator Wave3()
     {
         Debug.Log("WAVE3");
@@ -143,7 +127,6 @@ public class SpawnZombies : MonoBehaviour
             RandomSpawnPoint();
             SpawnDefaultZombie();
             yield return new WaitForSeconds(2);
-
         }
 
         for (int j = 0; j < 3; j++)
@@ -158,20 +141,12 @@ public class SpawnZombies : MonoBehaviour
             RandomSpawnPoint();
             SpawnZombieWithRedCone();
         }
-
-        Debug.Log("Arzombie" + Arzombie);
-        Debug.Log("Zombie " + zombie);
-        Debug.Log(("Conzombie " + Conzombie));
-        if (hard)
+        if (Hard)
         {
-
             yield return StartCoroutine(Wave4());
-
         }
         StopCoroutine(Wave3());
-        
     }
-
     IEnumerator Wave4()
     {
         for (int i = 0; i < 8; i++)
@@ -196,6 +171,5 @@ public class SpawnZombies : MonoBehaviour
         }
         StopCoroutine(Wave4());
     }
-
 }
 

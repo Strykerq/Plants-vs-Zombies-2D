@@ -1,35 +1,32 @@
 using UnityEngine;
-
 public class Parent : MonoBehaviour
-{
-    public Transform parent;
-
+{   [SerializeField]
+    private Transform _parent;
     private void Update()
     {
-        if (Bullet.instance != null)
+        if (Bullet.Instance != null)
         {
-            Bullet.instance.transform.SetParent(parent.transform);
+            Bullet.Instance.transform.SetParent(_parent.transform);
         }
 
         if (SunFlowerLogic.instance != null)
         {
-            SunFlowerLogic.instance.transform.SetParent(parent.transform);
+            SunFlowerLogic.instance.transform.SetParent(_parent.transform);
         }
 
-        if (RandomSpawn.instance != null)
+        if (RandomSpawn.Instance != null)
         {
-            RandomSpawn.instance.transform.SetParent(parent.transform);
+            RandomSpawn.Instance.transform.SetParent(_parent.transform);
         }
 
-        if (SpawnZombies.instance != null)
+        if (SpawnZombies.Instance != null)
         {
-            SpawnZombies.instance.transform.SetParent(parent.transform);
+            SpawnZombies.Instance.transform.SetParent(_parent.transform);
         }
 
-        if (SpawnLogic.instance != null)
+        if (SpawnLogic.Instance != null)
         {
-            SpawnLogic.instance.transform.SetParent(parent.transform);
+            SpawnLogic.Instance.transform.SetParent(_parent.transform);
         }
-        
     }
 }

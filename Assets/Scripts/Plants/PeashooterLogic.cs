@@ -1,48 +1,35 @@
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PeashooterLogic : MonoBehaviour
-{
-    private int maxHealth = 7;
-    private int currentHealth = 7;
-    private float fill = 1f;
-    public Image bar;
-    public Image fullBar;
-   
+public class PeashooterLogic : Plant
+{   
+    [SerializeField] private Image _bar;
+    [SerializeField] private Image _fullBar;
+    private void Start()
+    {
+        CurrentHealth = 7;
+        MaxHealth = 7;
+    }
     public void Update()
-    {    bar.fillAmount = fill;
+    {    _bar.fillAmount = Fill;
 
-        if (currentHealth == maxHealth)
+        if (CurrentHealth == MaxHealth)
         {
-            fullBar.enabled = false;
-            bar.enabled = false;
+            _fullBar.enabled = false;
+            _bar.enabled = false;
         }
         else
         {
-            fullBar.enabled = true;
-            bar.enabled = true;
+            _fullBar.enabled = true;
+            _bar.enabled = true;
         }
-
-        if (currentHealth == 0)
-        {
-           
-            Die();
-        }
-       
-        
-        
     }
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        fill -= 0.14f;
-        if (currentHealth <= 0)
+        CurrentHealth -= damage;
+        Fill -= 0.14f;
+        if (CurrentHealth <= 0)
         {
             Die();
         }
-    }
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 }

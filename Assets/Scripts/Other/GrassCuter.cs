@@ -1,31 +1,29 @@
 using UnityEngine;
-
 public class GrassCuter : MonoBehaviour
 {
-  private float speed = 1.5f;
-  private float delay = 14f;
-  private Vector2 movement;
-  public bool grassCuter = true;
-  public int zombieLayer = 3;
+  private float _speed = 1.5f;
+  private float _delay = 12f;
+  private Vector2 _movement;
+  private bool _grassCuter = true;
+  private int _zombieLayer = 3;
   
   private void Start()
   {
-      movement = new Vector2(1f, 0f);
+      _movement = new Vector2(1f, 0f);
   }
 
   private void Update()
   {
-    if (grassCuter == false)
+    if (_grassCuter == false)
     {
-        transform.Translate(movement * speed * Time.deltaTime);
-        Destroy(gameObject,delay);
+        transform.Translate(_movement * _speed * Time.deltaTime);
+        Destroy(gameObject,_delay);
     }
-    
   }
   private void OnCollisionEnter2D(Collision2D col)
   {
-      grassCuter = false;
-      if (col.gameObject.layer == zombieLayer)
+      _grassCuter = false;
+      if (col.gameObject.layer == _zombieLayer)
       {
           Destroy(col.gameObject);
       }

@@ -1,61 +1,46 @@
 using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private ShootingSettings shootingSettings;
-
-    public GameObject bullet;
-    public static GameObject instance;
-    private Vector2 newPosition;
+    [SerializeField] private ShootingSettings _shootingSettings;
+    [SerializeField] private GameObject _bullet;
+    public static GameObject Instance;
+    [SerializeField] private LayerMask _layerMask;
     RaycastHit2D hit;
-    public LayerMask layerMask;
-    public static float distance = 3f;
-    private bool zombieDetected;
-    private float timer = 0f;
-    private float shotFrequency;
-    
+    public static float Distance = 10f;
+    private bool _zombieDetected;
+    private float _timer = 0f;
+    private float _shotFrequency;
+    private Vector2 _newPosition;
     private void Start()
     {
-        newPosition = transform.position + (transform.right * 1);
-        
+        _newPosition = transform.position + (transform.right * 1);
     }
-    
-
     private void Update()
     {
-        shotFrequency = shootingSettings.shotFrequency;
-         
-        if (zombieDetected)
+        _shotFrequency = _shootingSettings.shotFrequency;
+        if (_zombieDetected)
         {
-            timer += Time.deltaTime;
-            if (timer >= shotFrequency)
+            _timer += Time.deltaTime;
+            if (_timer >= _shotFrequency)
             {
                 Shoot();
-                timer = 0f;
+                _timer = 0f;
             } 
         }
-        
-        hit = Physics2D.Raycast(transform.position, Vector2.left * distance, ~layerMask);
-        
-         
+        hit = Physics2D.Raycast(transform.position, Vector2.left, ~_layerMask);
         if (hit.collider!= null)                                                                                    
         {   
-            zombieDetected = true;
-            Debug.DrawRay(transform.position,Vector2.right * distance,Color.black);
-                    
+            _zombieDetected = true;
+            Debug.DrawRay(transform.position,Vector2.right * Distance,Color.red);
         }
         else
         { 
-            zombieDetected = false;
-            Debug.DrawRay(transform.position,Vector2.right * distance,Color.black);
-                     
+            _zombieDetected = false;
+            Debug.DrawRay(transform.position,Vector2.right * Distance,Color.yellow);
         }
-
-        
     }
-
-    public void Shoot()
+    private void Shoot()
     {
-        instance = Instantiate(bullet,newPosition, Quaternion.identity);
+        Instance = Instantiate(_bullet,_newPosition, Quaternion.identity);
     }
 }

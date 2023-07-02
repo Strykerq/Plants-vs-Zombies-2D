@@ -1,105 +1,38 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class ZombieWithRedCone : MonoBehaviour
+public class ZombieWithRedCone : Zombie
 {
-    public Image bar;
-    public Image fullBar;
-    private float fill = 1f;
-    private int zombiesWithRedConeHealth = 10;
-    private int zombiesWithTedConeMaxHealth = 10;
-    [SerializeField] private ZombieSettings zombieSettings;
-    private float speed;
-    private Vector2 movement;
-    private bool eating;
-
-    
-    
-    private void Start()
-    { 
-        speed = zombieSettings.zombieSpeed;
-        movement = new Vector2(-1, 0);
-    }
-    private void Update()
+    [SerializeField] private Image _bar;
+    [SerializeField] private Image _fullBar;
+    private new void Start()
     {
-        bar.fillAmount = fill;
-        if (zombiesWithRedConeHealth == zombiesWithTedConeMaxHealth)
+        CurrentHealth = 10;
+        MaxHealth = 10;
+        base.Start();
+    }
+    private new void Update()
+    {
+        base.Update();
+        _bar.fillAmount = Fill;
+        if (CurrentHealth == MaxHealth)
         {
-            fullBar.enabled = false;
-            bar.enabled = false;
+            _fullBar.enabled = false;
+            _bar.enabled = false;
         }
         else
         {
-            fullBar.enabled = true;
-            bar.enabled = true;
-        }
-        
-        if (eating == false)
-        {
-            transform.Translate(movement * speed * Time.deltaTime);
-        }
-        
-    }
-    
-    public void TakeDamageByZombiesWithRedCone(int damage)
-    {
-        zombiesWithRedConeHealth -= damage;
-        fill -= 0.1f;
-        if (zombiesWithRedConeHealth <= 0)
-        {
-            int randomIndex = Random.Range(0, 5);
-            if (randomIndex == 1)
-            {
-                GameManager.sunPoints += 25;
-            }
-            Destroy(gameObject);
-            GameManager.countZombies++;
+            _fullBar.enabled = true;
+            _bar.enabled = true;
         }
     }
-    
-    
-    private IEnumerator OnCollisionEnter2D(Collision2D col)
+    public override void TakeDamage(int damage)
     {
-        if (col.gameObject.CompareTag("WallNut"))
-        {
-            eating = true;
-            WallNut wallNut = col.gameObject.GetComponent<WallNut>();
-            for (int i = -20; i < wallNut.maxHealth; i++)
-            {
-                wallNut.TakeDamage(1);
-                yield return new WaitForSeconds(1f);
-            }
-            
-            eating = false;
-
-        }
-        
-        if (col.gameObject.CompareTag("Peashooter"))
-        {
-            eating = true;
-            PeashooterLogic peashooterLogic = col.gameObject.GetComponent<PeashooterLogic>();
-            for (int i = 0; i < 7; i++)           
-            {
-                peashooterLogic.TakeDamage(1);
-                yield return new WaitForSeconds(1);
-            }
-
-            eating = false;
-        }
-
-        if (col.gameObject.CompareTag("SunFlower"))
-        {
-            eating = true;
-            SunFlowerHealthBar sunFlowerHealthBar = col.gameObject.GetComponent<SunFlowerHealthBar>();
-            for (int i = 0; i < 5; i++)
-            {
-                
-                sunFlowerHealthBar.TakeDamage(1);
-                yield return new WaitForSeconds(1f);
-            }
-
-            eating = false;
-        }
+        base.TakeDamage(damage);
+        Fill -= 0.1f;
+    }
+    protected override IEnumerator OnCollisionEnter2D(Collision2D col)
+    {
+        yield return StartCoroutine(base.OnCollisionEnter2D(col));
     }
 }

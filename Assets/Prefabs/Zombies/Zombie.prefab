@@ -92,10 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627d7a47c08a6c9a495806c5fe39cfc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieSettings: {fileID: 11400000, guid: c4d0d7d5fdade06d98e5ba804f0907ee, type: 2}
-  sun: {fileID: 7502362805347669647, guid: 21bf6393c0b5398f08130f43ac8e62b7, type: 3}
-  bar: {fileID: 876235658538181013}
-  fullBar: {fileID: 2845223330985827162}
+  _zombieSettings: {fileID: 11400000, guid: c4d0d7d5fdade06d98e5ba804f0907ee, type: 2}
+  _bar: {fileID: 876235658538181013}
+  _fullBar: {fileID: 2845223330985827162}
 --- !u!61 &2692734935868738365
 BoxCollider2D:
   m_ObjectHideFlags: 0

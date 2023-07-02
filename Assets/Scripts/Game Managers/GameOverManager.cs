@@ -1,21 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class GameOverManager : MonoBehaviour
 {
-   public GameObject gameOverMenu;
+   [SerializeField] private GameObject _gameOverMenu;
       
    public void TryAgain()
    {
-       gameOverMenu.SetActive(false);
-       GameManager.sunPoints = 100;
+       _gameOverMenu.SetActive(false);
+       GameManager.SunPoints = 50;
        Time.timeScale = 1f;
        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
    }
-
    public void MainMenu()
    {
-       gameOverMenu.SetActive(false);
+       _gameOverMenu.SetActive(false);
        SceneManager.LoadScene(0);
    }
 }

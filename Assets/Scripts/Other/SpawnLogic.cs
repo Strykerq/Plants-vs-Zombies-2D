@@ -4,71 +4,73 @@ using UnityEngine.EventSystems;
 
 public class SpawnLogic : MonoBehaviour, IPointerDownHandler
 {
-   public static GameObject instance;
-   public Transform parent;
-   private GameObject selectedPrefab;
-   private bool isEmpty = true;
-   private int cost;
-   private Image image;
-   
+    public static GameObject Instance;
+   [SerializeField]
+   private Transform _parent;
+   private GameObject _selectedPrefab;
+   private bool _isEmpty = true;
+   private int _cost;
+   private Image _image;
    private void Start()
    {
-      image = GetComponent<Image>();
+      _image = GetComponent<Image>();
    }
-
    private void Update()
    {
-       if (GameManager.selectedPrefab == null && image != null)               // 
+       if (GameManager.SelectedPrefab == null && _image != null)               // 
        {                                                                      //
-           image.raycastTarget = false;                                        //
+           _image.raycastTarget = false;                                        //
        }                                                                      //   THIS IS TO SOLVE A CONFLICT BETWEEN TWO (ON POINTER DOWN)
-       else if(GameManager.selectedPrefab != null && image != null)           //    
+       else if(GameManager.SelectedPrefab != null && _image != null)           //    
        {                                                                      //
-           image.raycastTarget = true;                                         //
+           _image.raycastTarget = true;                                         //
        }                                                                       
-       selectedPrefab = GameManager.selectedPrefab; 
+       _selectedPrefab = GameManager.SelectedPrefab; 
       
-       if (GameManager.indexPrefab == 1)
+       if (GameManager.IndexPrefab == 1)
        {
-           cost = 50;
+           _cost = 50;
        }
-       else if(GameManager.indexPrefab == 2)
+       else if(GameManager.IndexPrefab == 2)
        {
-           cost = 100;
+           _cost = 100;
        }
        else
        {
-          cost = 125;
+          _cost = 125;
+       }
+
+       if (Instance == null)
+       {
+           _isEmpty = true;
        }
    }
-
    public void OnPointerDown(PointerEventData eventData)
    {
-       if (GameManager.selectedPrefab != null)
+       if (GameManager.SelectedPrefab != null)
        {
-           if (isEmpty && GameManager.sunPoints >= cost)
+           if (_isEmpty && GameManager.SunPoints >= _cost)
            {
-               instance = Instantiate(selectedPrefab, transform.position, Quaternion.identity,parent);
-               if (GameManager.indexPrefab == 1)
+               Instance = Instantiate(_selectedPrefab, transform.position, Quaternion.identity,_parent);
+               if (GameManager.IndexPrefab == 1)
                {
-                   SunFlowerHealthBar sunFlowerHealthBar = instance.GetComponent<SunFlowerHealthBar>();
+                   SunFlowerLogic sunFlowerHealthBar = Instance.GetComponent<SunFlowerLogic>();
                }
 
-               if (GameManager.indexPrefab == 2)
+               if (GameManager.IndexPrefab == 2)
                {
-                   PeashooterLogic peashooterLogic = instance.GetComponent<PeashooterLogic>();
+                   PeashooterLogic peashooterLogic = Instance.GetComponent<PeashooterLogic>();
                }
             
-               if (GameManager.indexPrefab == 3)
+               if (GameManager.IndexPrefab == 3)
                {
-                   WallNut wallNut = instance.GetComponent<WallNut>();
+                   WallNut wallNut = Instance.GetComponent<WallNut>();
                }
             
-               GameManager.sunPoints -= cost;
-               GameManager.selectedPrefab = null;
-               isEmpty = false;
+               GameManager.SunPoints -= _cost;
+               GameManager.SelectedPrefab = null;
+               _isEmpty = false;
            }
        }
-      
    }
 }

@@ -1,73 +1,67 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 public class GameManager : MonoBehaviour
 {
-  public static int sunPoints = 50;
-  public Text sunPointsText;
-  public GameObject prefabSunFlower; 
-  public  GameObject prefabPeashooter;
-  public GameObject prefabWallNut;
-  public static GameObject selectedPrefab;
-  public static int indexPrefab;
-  public GameObject gameWinPanel;
-  public static int countZombies;
-
-
+  public static int SunPoints = 50;
+  [SerializeField] private Text _sunPointsText;
+  [SerializeField] private GameObject _prefabSunFlower; 
+  [SerializeField] private GameObject _prefabPeashooter;
+  [SerializeField] private GameObject _prefabWallNut;
+  [SerializeField] GameObject _gameWinPanel;
+  public static GameObject SelectedPrefab;
+  public static int IndexPrefab;
+  public static int CountZombies;
   public void WallNutPrefab()
   {
-      selectedPrefab = prefabWallNut;
-      indexPrefab = 3;
+      SelectedPrefab = _prefabWallNut;
+      IndexPrefab = 3;
   }
   public void SunFlowerPrefab()
   { 
-      selectedPrefab = prefabSunFlower;
-      indexPrefab = 1;
+      SelectedPrefab = _prefabSunFlower;
+      IndexPrefab = 1;
   }
-  
   public void PeashooterPrefab()
   {
-      if (sunPoints >= 100)
+      if (SunPoints >= 100)
       {
-          selectedPrefab = prefabPeashooter;
-          indexPrefab = 2;
+          SelectedPrefab = _prefabPeashooter;
+          IndexPrefab = 2;
       }
-    
   }
   private void Update()
   {
-      if (SpawnZombies.low)
+      if (SpawnZombies.Low)
       {
-          if (countZombies == 22)
+          if (CountZombies == 22)
           {
               WinGame();
           }
       }
-      else if (SpawnZombies.norm)
+      else if (SpawnZombies.Norm)
       {
-          if (countZombies == 38)
+          if (CountZombies == 38)
           {
               WinGame();
           }
       }
-      else if (SpawnZombies.hard)
+      else if (SpawnZombies.Hard)
       {
-          if (countZombies == 57)
+          if (CountZombies == 58)
           {
               WinGame();
           }
       }
-      sunPointsText.text = sunPoints.ToString();
+      _sunPointsText.text = SunPoints.ToString();
       
       if (Input.GetKeyDown(KeyCode.Escape))
       {
-          selectedPrefab = null;
+          SelectedPrefab = null;
       }
   }
   private void WinGame()
   {
       Time.timeScale = 0f; 
-      gameWinPanel.SetActive(true);
-      
+      _gameWinPanel.SetActive(true);
   }
 }

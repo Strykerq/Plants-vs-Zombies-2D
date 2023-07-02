@@ -1,35 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 public class SliderController : MonoBehaviour
 {
-    public Text text;
-    public Slider slider;
-    public static int low = 1;
-    public static int normal = 2;
-    public static int hard= 3;
-    public static int selectedLevel;
-
+    [SerializeField] private Text _text;
+    [SerializeField] private Slider _slider;
+    public static int Low = 1;
+    public static int Normal = 2;
+    public static int Hard = 3;
+    public static int SelectedLevel;
     public void Update()
     {
-        if (slider.value == 0)
+        if (_slider.value == 0)
         {
-            text.text = "DIFFUCLT : LOW";
-            selectedLevel = low;
-            Bullet.distance = 3;
+            _text.text = "DIFFUCLT : LOW";
+            SelectedLevel = Low;
+            Bullet.Distance = 12;
         }
-        else if (slider.value == 1)
+        else if (_slider.value == 1)
         {
-            text.text = "DIFFUCLT : NORMAl";
-            selectedLevel = normal;
+            _text.text = "DIFFUCLT : NORMAl";
+            SelectedLevel = Normal;
         }
         else
         {
-            text.text = "DIFFUCLT : HARD";
-            selectedLevel = hard;
-            Bullet.distance = 1;
-
+            _text.text = "DIFFUCLT : HARD";
+            SelectedLevel = Hard;
+            Bullet.Distance = 8;
         }
-
     }
 }
